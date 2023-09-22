@@ -10,7 +10,6 @@ import { Typography, Breadcrumbs } from '@mui/joy'
 import { Link } from 'react-router-dom'
 
 export const AdvanceBooking = (props) => {
-    console.log(props)
     const [show, setShow] = React.useState(false);
     const [desc, setDesc] = React.useState("");
 

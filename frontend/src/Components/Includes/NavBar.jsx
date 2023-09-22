@@ -16,7 +16,7 @@ import Stack from '@mui/material/Stack';
 import { Link } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
-const xpages = [{ name: 'Home', path: '/' }, { name: 'About Us', path: '/about' }, { name: 'Resrvation', path: '/reservation' },{name:"Contact" ,path:'/Contact'}];
+const xpages = [{ name: 'Home', path: '/' }, { name: 'About Us', path: '/about' }, { name: 'Resrvation', path: '/reservation' }, { name: "Contact", path: '/Contact' }];
 
 export const NavBar = ({ userInfo, logOut }) => {
 
@@ -73,7 +73,7 @@ export const NavBar = ({ userInfo, logOut }) => {
                                         textDecoration: 'none',
                                     }}
                                 >
-                                    LOGO    
+                                    LOGO
                                 </Typography>
                                 <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                                     {xpages.map((page, i) => (

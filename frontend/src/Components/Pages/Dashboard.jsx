@@ -10,8 +10,7 @@ import tableAPI from '../../api/tables';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Form from 'react-bootstrap/Form';
 import Delete from '@mui/icons-material/Delete';
-
-// import { ErrorToast } from './Includes/ErrorToast';
+import { ErrorToast } from './Includes/ErrorToast';
 
 export const Dashboard = (props) => {
 
@@ -22,8 +21,8 @@ export const Dashboard = (props) => {
     const [type, setType] = React.useState("");
     const [tableNo, setTableNo] = React.useState("");
     const [capacity, setCapacity] = React.useState("");
-    // const [show, setShow] = React.useState(false);
-    // const [desc, setDesc] = React.useState("");
+    const [show, setShow] = React.useState(false);
+    const [desc, setDesc] = React.useState("");
 
     const editMinTime = (e) => {
         setType('minTime')
@@ -75,17 +74,28 @@ export const Dashboard = (props) => {
         const res = await tableAPI.get('/')
         setTables(res.data)
     }
+
     React.useEffect(() => {
         getTables();
     }, [])
 
-    const handleFormSubmit = async (e) => {
-        console.log(e)
+    const handleDelete = async (e) => {
+        const tNo = e.currentTarget.getAttribute("table")
+        tableAPI.delete(`/${tNo}`)
+        setTables(tables.filter(t => t.tableNo !== tNo))
     }
-    // getTables();
+    const handleFormSubmit = async (e) => {
+        if (tables.map(t => t.tableNo).includes(tableNo)) {
+            setDesc("Table already exists.")
+            setShow(true)
+        } else {
+            await tableAPI.post('/', { tableNo, capacity })
+            setTables([...tables, { tableNo, capacity }])
+        }
+    }
     return (
         <>
-            {/* <ErrorToast desc={desc} show={show} setShow={setShow} /> */}
+            <ErrorToast desc={desc} show={show} setShow={setShow} />
             <DialogBox open={open} handleClose={handleClose} setValue={setValue} handleSubmit={handleSubmit} newVal={newVal} label={label} type={type} restroData={props.restroData} />
             <Container fluid className="px-0">
                 <section className="bg-info py-3 mb-4">
@@ -171,11 +181,11 @@ export const Dashboard = (props) => {
                                 <AccordionDetails>
                                     <Form className=' d-flex justify-content-around' onSubmit={handleFormSubmit}>
                                         <Form.Group className="mb-3" controlId="formBasicEmail">
-                                            <Form.Control type="number" placeholder="Table Number" value={tableNo} onChange={(e) => setTableNo(e.target.value)} />
+                                            <Form.Control type="number" placeholder="Table Number" value={tableNo} onChange={(e) => setTableNo(parseInt(e.target.value || 0))} />
                                         </Form.Group>
 
                                         <Form.Group className="mb-3 ps-2" controlId="formBasicPassword">
-                                            <Form.Control type="number" placeholder="Capacity" value={capacity} onChange={(e) => setCapacity(e.target.value)} />
+                                            <Form.Control type="number" placeholder="Capacity" value={capacity} onChange={(e) => setCapacity(parseInt(e.target.value || 0))} />
                                         </Form.Group>
                                     </Form>
                                     <Button variant="contained" color="success" onClick={handleFormSubmit}>
@@ -187,7 +197,7 @@ export const Dashboard = (props) => {
                                             tables.map((t, i) =>
                                                 <JoyListItem key={i}
                                                     endAction={
-                                                        <JoyIconButton aria-label="Delete" size="sm" color="danger">
+                                                        <JoyIconButton aria-label="Delete" size="sm" color="danger" table={t.tableNo} onClick={handleDelete}>
                                                             <Delete />
                                                         </JoyIconButton>
                                                     }
