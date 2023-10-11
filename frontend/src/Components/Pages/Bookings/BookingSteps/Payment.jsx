@@ -4,6 +4,7 @@ import { Row, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom';
 import { ErrorToast } from '../../Includes/ErrorToast';
 import axios from 'axios';
+import config from '../../../../config.json';
 
 export const Payment = (props) => {
     const [show, setShow] = useState(false);
@@ -44,7 +45,9 @@ export const Payment = (props) => {
         }
 
         // creating a new order
-        const result = await axios.post("http://localhost:5000/api/payment/orders");
+        const result = await axios.post("http://localhost:5000/api/payment/orders", {
+            rupees: rows[0].total
+        });
 
         if (!result) {
             // alert("Server error. Are you online?");
@@ -57,10 +60,10 @@ export const Payment = (props) => {
         const { amount, id: order_id, currency } = result.data;
 
         const options = {
-            key: "rzp_test_NyHFPTh6gSBmY0", // Enter the Key ID generated from the Dashboard
+            key: config.razorpay.id, // Enter the Key ID generated from the Dashboard
             amount: amount.toString(),
             currency: currency,
-            name: "My Company",
+            name: "Jalay Movaliya",
             description: "Test Transaction",
             // image: { logo },
             order_id: order_id,
@@ -72,17 +75,17 @@ export const Payment = (props) => {
                     razorpaySignature: response.razorpay_signature,
                 };
 
-                const result = await axios.post("http://localhost:5000/payment/success", data);
-
+                const result = await axios.post("http://localhost:5000/api/payment/success", data);
                 alert(result.data.msg);
+                
             },
             prefill: {
-                name: "Soumya Dey",
-                email: "SoumyaDey@example.com",
-                contact: "9999999999",
+                name: "Jalay Movaliya",
+                email: "jalaym123@gmail.com",
+                contact: "8780279011",
             },
             notes: {
-                address: "Soumya Dey Corporate Office",
+                address: "Surat",
             },
             theme: {
                 color: "#61dafb",

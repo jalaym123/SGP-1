@@ -25,7 +25,7 @@ export const App = () => {
   const navigate = useNavigate();
 
   const [restroData, setRestroData] = React.useState({});
-  useEffect(() => {
+  React.useEffect(() => {
     (async () => {
       const res = await restroApi.get('/')
       setRestroData(res.data);

@@ -2,6 +2,7 @@ const express = require('express');
 const Razorpay = require('razorpay');
 const { secret, id } = require('../config.json').razorpay;
 const router = express.Router();
+const crypto = require('crypto');
 
 router.post("/orders", async (req, res) => {
     try {
@@ -11,7 +12,7 @@ router.post("/orders", async (req, res) => {
         })
 
         const options = {
-            amount: 50000, // amount in smallest currency unit
+            amount: req.body.rupees * 100, // amount in smallest currency unit
             currency: "INR",
             receipt: "receipt_order_74394",
         };
@@ -46,7 +47,8 @@ router.post("/success", async (req, res) => {
 
         // comaparing our digest with the actual signature
         if (digest !== razorpaySignature)
-            return res.status(400).json({ msg: "Transaction not legit!" });
+            return res.json({ msg: "Transaction not legit!" });
+            // return res.status(400).json({ msg: "Transaction not legit!" });
 
         // THE PAYMENT IS LEGIT & VERIFIED
         // YOU CAN SAVE THE DETAILS IN YOUR DATABASE IF YOU WANT
@@ -57,6 +59,7 @@ router.post("/success", async (req, res) => {
             paymentId: razorpayPaymentId,
         });
     } catch (error) {
+        console.log(error)
         res.status(500).send(error);
     }
 });
