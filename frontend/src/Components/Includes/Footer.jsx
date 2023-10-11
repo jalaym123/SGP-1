@@ -1,11 +1,12 @@
 import React from 'react';
 // import { Container, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { MDBFooter, MDBContainer, MDBRow, MDBCol, MDBIcon ,MDBBtn} from 'mdb-react-ui-kit';
+import { MDBFooter, MDBContainer, MDBRow, MDBCol, MDBIcon, MDBBtn } from 'mdb-react-ui-kit';
 
 
 export const Footer = () => {
     return (
+
         <MDBFooter className='text-center' color='white' bgColor='dark'>
             <section className='d-flex justify-content-center justify-content-lg-between p-4 border-bottom'>
                 <div className='me-5 d-none d-lg-block'>

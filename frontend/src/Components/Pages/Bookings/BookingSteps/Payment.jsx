@@ -1,10 +1,14 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from '@mui/material';
 import { Row, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom';
+import { ErrorToast } from '../../Includes/ErrorToast';
 import axios from 'axios';
 
 export const Payment = (props) => {
+    const [show, setShow] = useState(false);
+    const [desc, setDesc] = useState("");
+
 
     function createData(guests, date, time, total) {
         return { guests, date, time, total };
@@ -33,16 +37,20 @@ export const Payment = (props) => {
         );
 
         if (!res) {
-            alert("Razorpay SDK failed to load. Are you online?");
-            return;
+            // alert("Razorpay SDK failed to load. Are you online?");
+            // return;
+            setDesc("Razorpay SDK failed to load. Are you online?");
+            return setShow(true);
         }
 
         // creating a new order
         const result = await axios.post("http://localhost:5000/api/payment/orders");
 
         if (!result) {
-            alert("Server error. Are you online?");
-            return;
+            // alert("Server error. Are you online?");
+            // return;
+            setDesc("Server error. Are you online?");
+            return setShow(true);
         }
 
         // Getting the order details back
@@ -87,6 +95,7 @@ export const Payment = (props) => {
 
     return (
         <>
+            <ErrorToast desc={desc} show={show} setShow={setShow} />
             <Row className='mt-5 d-flex justify-content-center'>
                 <Col className='col-md-7 col-lg-5 col-sm-12 d-flex justify-content-center'>
                     <TableContainer component={Paper}>

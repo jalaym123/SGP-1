@@ -29,7 +29,6 @@ export const NavBar = ({ userInfo, logOut }) => {
     const handleOpenUserMenu = (event) => {
         setAnchorElUser(event.currentTarget);
     };
-
     const handleCloseNavMenu = () => {
         setAnchorElNav(null);
     };
