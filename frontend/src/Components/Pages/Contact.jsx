@@ -33,7 +33,7 @@ export const Contact = () => {
             <div className="radio" style={{ display: 'inline', color: 'white' }}>
               <Form.Check aria-label="option 1" style={{ display: 'inline' }} />
               &nbsp;I’ve read and accept the
-              <a href="/Contact" rel="noopener" class="fy-form-terms-link a-form-terms-link" style={{ color: 'white' }}> terms and conditions</a>
+              <a href="/Contact" rel="noopener" className="fy-form-terms-link a-form-terms-link" style={{ color: 'white' }}> terms and conditions</a>
             </div>
           </Form>
           <br />

@@ -14,10 +14,10 @@ export const VMC = () => {
             <div className='underline mx-auto my-4'></div>
           </Col>
           <Col className='text-center col-4'>
-            <div class="card">
-              <div class="content">
-                <p class="heading mx-auto">Vision
-                </p><p class="para">
+            <div className="card">
+              <div className="content">
+                <p className="heading mx-auto">Vision
+                </p><p className="para">
                   Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi
                   laboriosam at voluptas minus culpa deserunt delectus sapiente
                   inventore pariatur
@@ -27,10 +27,10 @@ export const VMC = () => {
           </Col>
           <Col className='text-center col-4'>
           <Col className='text-center col-4'>
-            <div class="card">
-              <div class="content">
-                <p class="heading mx-auto">Mission
-                </p><p class="para">
+            <div className="card">
+              <div className="content">
+                <p className="heading mx-auto">Mission
+                </p><p className="para">
                   Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi
                   laboriosam at voluptas minus culpa deserunt delectus sapiente
                   inventore pariatur
@@ -41,10 +41,10 @@ export const VMC = () => {
           </Col>
           <Col className='text-center col-4'>
           <Col className='text-center col-4'>
-            <div class="card">
-              <div class="content">
-                <p class="heading mx-auto">Values</p>
-                <p class="para">
+            <div className="card">
+              <div className="content">
+                <p className="heading mx-auto">Values</p>
+                <p className="para">
                   Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi
                   laboriosam at voluptas minus culpa deserunt delectus sapiente
                   inventore pariatur
