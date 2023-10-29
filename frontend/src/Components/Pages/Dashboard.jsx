@@ -79,9 +79,9 @@ export const Dashboard = (props) => {
     }, [])
 
     const handleDelete = async (e) => {
-        const tNo = e.currentTarget.getAttribute("table")
-        tableAPI.delete(`/${tNo}`)
-        setTables(tables.filter(t => t.tableNo !== tNo))
+        const tNo = e.currentTarget.getAttribute("table");
+        await tableAPI.delete(`/${tNo}`);
+        setTables(tables.filter(t => t.tableNo !== Number.parseInt(tNo)))
     }
     const handleFormSubmit = async (e) => {
         if (tables.map(t => t.tableNo).includes(tableNo)) {
