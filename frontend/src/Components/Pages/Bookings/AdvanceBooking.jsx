@@ -37,8 +37,9 @@ export const AdvanceBooking = (props) => {
             props.setStep(0)
         } else if (props.Step === 2) {
             props.setStep(1)
-        } else if (props.Step === 3)
+        } else if (props.Step === 3) {
             props.setStep(2)
+        }
     }
 
     const steps = [

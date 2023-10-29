@@ -58,7 +58,7 @@ export const Reservation = ({restroData}) => {
                 </Typography>
               </CardContent>
               <CardOverflow>
-                <Button component={Link} variant="solid" color="danger" size="lg" to='/reservation/livebooking'>
+                <Button component={Link}  variant="solid" color="danger" size="lg" to='/reservation/livebooking'>
                   Book Now
                 </Button>
               </CardOverflow>
@@ -78,7 +78,7 @@ export const Reservation = ({restroData}) => {
               </CardOverflow>
               <CardContent>
                 <Typography level="body-xs">Reserve a table in advance</Typography>
-                <MUILink
+                <MUILink 
                   component={Link}
                   to="/reservation/advancebooking"
                   fontWeight="md"

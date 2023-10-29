@@ -12,6 +12,9 @@ import { Reservation } from './Components/Pages/Reservation'
 import { AdvanceBooking } from './Components/Pages/Bookings/AdvanceBooking'
 import { LiveBooking } from './Components/Pages/Bookings/LiveBooking'
 import { Dashboard } from './Components/Pages/Dashboard'
+import { PaymentInfo } from './Components/Pages/PaymentInfo'
+import { Contact } from './Components/Pages/Contact'
+import { MyBooking } from './Components/Pages/MyBooking'
 import dayjs from 'dayjs';
 import './App.css';
 import restroApi from './api/restro'
@@ -22,7 +25,7 @@ export const App = () => {
   const navigate = useNavigate();
 
   const [restroData, setRestroData] = React.useState({});
-  useEffect(() => {
+  React.useEffect(() => {
     (async () => {
       const res = await restroApi.get('/')
       setRestroData(res.data);
@@ -87,6 +90,8 @@ export const App = () => {
             return <Route path={path} element={<Home />} key={i} />
           })}
           <Route path='/about' element={<About />} />
+          <Route path='/Contact' element={<Contact />} />
+          <Route path='/MyBooking' element={< MyBooking />} />
           <Route path='/login' element={<Login setInfo={setInfo} />} />
           <Route path='/signup' element={<Signup setInfo={setInfo} />} />
           <Route path='/reservation'
@@ -110,6 +115,11 @@ export const App = () => {
               setTime={setTime}
               Guests={guests}
               setGuests={setGuests}
+              restroData={restroData}
+            />}
+          />
+          <Route path='/reservation/advancebooking/payment'
+            element={<PaymentInfo
               restroData={restroData}
             />}
           />

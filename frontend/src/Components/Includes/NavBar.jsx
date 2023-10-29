@@ -16,7 +16,7 @@ import Stack from '@mui/material/Stack';
 import { Link } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
-const xpages = [{ name: 'Home', path: '/' }, { name: 'About Us', path: '/about' }, { name: 'Resrvation', path: '/reservation' }];
+const xpages = [{ name: 'Home', path: '/' }, { name: 'About Us', path: '/about' }, { name: 'Resrvation', path: '/reservation' }, { name: "Contact", path: '/Contact' } , {name : " MyBooking" ,path : "/MyBooking"}];
 
 export const NavBar = ({ userInfo, logOut }) => {
 
@@ -29,7 +29,6 @@ export const NavBar = ({ userInfo, logOut }) => {
     const handleOpenUserMenu = (event) => {
         setAnchorElUser(event.currentTarget);
     };
-
     const handleCloseNavMenu = () => {
         setAnchorElNav(null);
     };

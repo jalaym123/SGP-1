@@ -13,8 +13,8 @@ export const LoginForm = (props) => {
     props.userInfo && (initState = props.userInfo);
 
     let [state, setState] = useState(initState);
-    const [show, setShow] = useState(false);
-    const [desc, setDesc] = useState("");
+        const [show, setShow] = useState(false);
+        const [desc, setDesc] = useState("");
 
     const updateState = (obj) => {
         setState(prevState => { return { ...prevState, ...obj } });
@@ -88,7 +88,6 @@ export const LoginForm = (props) => {
                         Don't have an acount? <Link to="/signup">Sign Up</Link>
                     </Container>
                 </Row>
-
             </Form>
         </>
     )

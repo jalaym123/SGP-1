@@ -29,7 +29,7 @@ export const Login = ({ setInfo }) => {
         <Row className='d-flex justify-content-center m-0'>
           <Col className="col-md-6 col-lg-4 col-sm-10">
             <Container className='shadow my-5 py-3'>
-              <LoginForm setInfo={setInfo} />
+              <LoginForm value="info" setInfo={setInfo} />
             </Container>
           </Col>
         </Row>

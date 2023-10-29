@@ -15,6 +15,7 @@ app.use(cors()) // Use this after the variable declaration and before routes dec
 app.use('/api/users', require('./routes/usersRoutes'))
 app.use('/api/tables', require('./routes/tableRoutes'))
 app.use('/api/restro', require('./routes/restroRoutes'))
+app.use('/api/payment', require('./routes/payment'))
 app.use(errorHandler);
 
 app.listen(port, () => {
