@@ -19,31 +19,31 @@ export const SignupForm = (props) => {
     const isPasswordSecure = (password) => {
         let regex = new RegExp("^(?=.*[a-z])");
         if (!regex.test(password)) {
-            setDesc("The password must contain at least one lowercase character");
+            setDesc("The password must contain at least one lowercase,uppercase,one number,one special character and eight character");
             setShow(true);
             return false;
         }
         regex = new RegExp("^(?=.*[A-Z])");
         if (!regex.test(password)) {
-            setDesc("The password must contain at least one uppercase character");
+            setDesc("The password must contain at least one lowercase,uppercase,one number,one special character and eight character");
             setShow(true);
             return false;
         }
         regex = new RegExp("^(?=.*[0-9])");
         if (!regex.test(password)) {
-            setDesc("The password must contain at least one number");
+            setDesc("The password must contain at least one lowercase,uppercase,one number,one special character and eight character");
             setShow(true);
             return false;
         }
         regex = new RegExp("^(?=.*[!@#$%^&*])");
         if (!regex.test(password)) {
-            setDesc("The password must contain at least one special character");
+            setDesc("The password must contain at least one lowercase,uppercase,one number,one special character and eight character");
             setShow(true);
             return false;
         }
         regex = new RegExp("^(?=.{8,})");
         if (!regex.test(password)) {
-            setDesc("The password must be eight characters or longer");
+            setDesc("The password must contain at least one lowercase,uppercase,one number,one special character and eight character");
             setShow(true);
             return false;
         }
