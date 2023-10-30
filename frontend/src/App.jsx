@@ -90,6 +90,7 @@ export const App = () => {
           })}
           <Route path='/about' element={<About />} />
           <Route path='/Contact' element={<Contact />} />
+          {/* <Route path='/MyBooking' element={< MyBooking />} /> */}
           <Route path='/login' element={<Login setInfo={setInfo} />} />
           <Route path='/signup' element={<Signup setInfo={setInfo} />} />
           <Route path='/reservation'

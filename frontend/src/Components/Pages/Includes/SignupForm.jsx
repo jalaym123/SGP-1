@@ -17,33 +17,51 @@ export const SignupForm = (props) => {
     props.userInfo && (initState = props.userInfo);
 
     const isPasswordSecure = (password) => {
+        const requirements = new Map([
+            ["lowerCase", true],
+            ["upperCase", true],
+            ["numeric", true],
+            ["specialChar", true],
+            ["eightChars", true]
+        ])
+
+        const tempMap = {
+            "lowerCase": "one lowercase",
+            "upperCase": "one uppercase",
+            "number": "one number",
+            "specialChar": "one special character",
+            "eightChars": "eight characters",
+        }
+
         let regex = new RegExp("^(?=.*[a-z])");
-        if (!regex.test(password)) {
-            setDesc("The password must contain at least one lowercase character");
-            setShow(true);
-            return false;
-        }
+        if (!regex.test(password))
+            requirements.set("lowerCase", false);
+
         regex = new RegExp("^(?=.*[A-Z])");
-        if (!regex.test(password)) {
-            setDesc("The password must contain at least one uppercase character");
-            setShow(true);
-            return false;
-        }
+        if (!regex.test(password))
+            requirements.set("upperCase", false);
+
         regex = new RegExp("^(?=.*[0-9])");
-        if (!regex.test(password)) {
-            setDesc("The password must contain at least one number");
-            setShow(true);
-            return false;
-        }
+        if (!regex.test(password))
+            requirements.set("numeric", false);
+
         regex = new RegExp("^(?=.*[!@#$%^&*])");
-        if (!regex.test(password)) {
-            setDesc("The password must contain at least one special character");
-            setShow(true);
-            return false;
-        }
+        if (!regex.test(password))
+            requirements.set("specialChar", false);
+
         regex = new RegExp("^(?=.{8,})");
-        if (!regex.test(password)) {
-            setDesc("The password must be eight characters or longer");
+        if (!regex.test(password))
+            requirements.set("eightChars", false);
+
+        const errors = [];
+        requirements.forEach((key, val) => {
+            console.log(key, val)
+            if (key === false)
+                errors.push(tempMap[val]);
+        })
+        console.log(errors)
+        if (errors.length > 0) {
+            setDesc(`Your password must includes: ${errors.join(", ")}`)
             setShow(true);
             return false;
         }
