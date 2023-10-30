@@ -65,7 +65,7 @@ export const SignupForm = (props) => {
             setShow(true);
             return false;
         }
-        return false;
+        return true;
     };
 
     const isMobileNumberValid = (mNo) => {
