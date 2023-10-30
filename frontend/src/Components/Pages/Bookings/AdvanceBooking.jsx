@@ -8,10 +8,12 @@ import { Payment } from './BookingSteps/Payment';
 import { ErrorToast } from '../Includes/ErrorToast'
 import { Typography, Breadcrumbs } from '@mui/joy'
 import { Link } from 'react-router-dom'
+import tableAPI from '../../../api/tables';
 
 export const AdvanceBooking = (props) => {
     const [show, setShow] = React.useState(false);
     const [desc, setDesc] = React.useState("");
+    const [tables, setTables] = React.useState([]);
 
     const handleNext = () => {
         if (props.Step === 0) {
@@ -86,12 +88,15 @@ export const AdvanceBooking = (props) => {
 
                     {
                         props.Step === 0 && (
-                            <GuestPicker maxGuests={props.restroData.maxGuests} setGuests={props.setGuests} value={props.Guests} handleNext={handleNext} />
+                            <GuestPicker setTables={setTables} maxGuests={props.restroData.maxGuests} setGuests={props.setGuests} value={props.Guests} handleNext={handleNext} />
                         )
                     }
                     {
                         props.Step === 1 && (
                             <DatePickerComponent
+                                restroData={props.restroData}
+                                tables={tables}
+                                setTables={setTables}
                                 setDate={props.setDate}
                                 value={props.Date}
                                 handleBack={handleBack}
@@ -102,6 +107,8 @@ export const AdvanceBooking = (props) => {
                     {
                         props.Step === 2 && (
                             <TimePickerComponent
+                                tables={tables}
+                                setTables={setTables}
                                 minTime={props.restroData.minTime}
                                 maxTime={props.restroData.maxTime}
                                 buttons={true}
@@ -115,6 +122,8 @@ export const AdvanceBooking = (props) => {
                     {
                         props.Step === 3 && (
                             <Payment
+                                table={tables}
+                                setTables={setTables}
                                 guests={props.Guests}
                                 date={`${props.Date.date()}/${props.Date.month() + 1}/${props.Date.year()}`}
                                 time={new Date(props.Time.toISOString()).toLocaleTimeString('en-us', { timeZone: 'UTC', hour12: true, hour: 'numeric', minute: 'numeric' })}

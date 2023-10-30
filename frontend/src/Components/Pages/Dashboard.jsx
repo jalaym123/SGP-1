@@ -201,7 +201,7 @@ export const Dashboard = (props) => {
                                                         </JoyIconButton>
                                                     }
                                                 >
-                                                    <JoyListItemButton>Table No. {t.tableNo}</JoyListItemButton>
+                                                    <JoyListItemButton>Table No. {t.tableNo} - {t.capacity}</JoyListItemButton>
                                                 </JoyListItem>
                                             )
                                         }

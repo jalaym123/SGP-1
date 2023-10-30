@@ -1,10 +1,10 @@
-import React,{useState} from 'react'
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from '@mui/material';
-import { Row, Col } from 'react-bootstrap'
-import { Link } from 'react-router-dom';
-import { ErrorToast } from '../../Includes/ErrorToast';
+import { Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 import axios from 'axios';
+import React, { useState } from 'react';
+import { Col, Row } from 'react-bootstrap';
 import config from '../../../../config.json';
+import { ErrorToast } from '../../Includes/ErrorToast';
+import tableAPI from '../../../../api/tables';
 
 export const Payment = (props) => {
     const [show, setShow] = useState(false);
@@ -41,7 +41,8 @@ export const Payment = (props) => {
             // alert("Razorpay SDK failed to load. Are you online?");
             // return;
             setDesc("Razorpay SDK failed to load. Are you online?");
-            return setShow(true);
+            setShow(true);
+            return;
         }
 
         // creating a new order
@@ -53,7 +54,8 @@ export const Payment = (props) => {
             // alert("Server error. Are you online?");
             // return;
             setDesc("Server error. Are you online?");
-            return setShow(true);
+            setShow(true);
+            return;
         }
 
         // Getting the order details back
@@ -76,8 +78,9 @@ export const Payment = (props) => {
                 };
 
                 const result = await axios.post("http://localhost:5000/api/payment/success", data);
-                alert(result.data.msg);
-                
+                setDesc(result.data.msg+", booking successful");
+                setShow(true);
+                tableAPI.get();
             },
             prefill: {
                 name: "Jalay Movaliya",
@@ -132,9 +135,6 @@ export const Payment = (props) => {
                     </Button>
                     <Button variant="contained" color="success" onClick={displayRazorpay}>
                         Pay {rows[0].total}
-                    </Button>
-                    <Button variant="contained" color="success" LinkComponent={Link} to='/reservation/advancebooking/payment' className='ms-2'>
-                        proceed to payment
                     </Button>
                 </Col>
             </Row>

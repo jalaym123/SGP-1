@@ -2,12 +2,21 @@ const asyncHandler = require('express-async-handler');
 const tableModel = require('../models/Table');
 
 //@desc get restro details
-//@route POST /api/tables/
+//@route GET /api/tables/
 //@access public
 const getTables = asyncHandler(async (_, res) => {
     const tables = await tableModel.find();
     res.json(tables);
 })
+
+//@desc get restro details
+//@route GET /api/tables/guests/:id
+//@access public
+const getTable = asyncHandler(async (req, res) => {
+    const tables = await tableModel.find({ capacity: req.params.id});
+    res.json(tables);
+})
+
 
 //@desc get restro details
 //@route POST /api/tables/
@@ -27,4 +36,4 @@ const deleteTable = asyncHandler(async (req, res) => {
     res.json(restro)
 })
 
-module.exports = { getTables, deleteTable, createTable }
+module.exports = { getTables, deleteTable, createTable, getTable }

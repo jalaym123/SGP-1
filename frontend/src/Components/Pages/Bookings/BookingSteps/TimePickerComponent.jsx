@@ -6,7 +6,11 @@ import { DigitalClock } from '@mui/x-date-pickers/DigitalClock';
 import { Button } from '@mui/material';
 import { Row, Col, Container } from 'react-bootstrap';
 
-export const TimePickerComponent = (props) => {
+export const TimePickerComponent = ({ minTime, maxTime, value, setTime, buttons, handleBack, handleNext, tables, setTables }) => {
+    const handleTime = async (newValue) => {
+        
+        setTime(newValue);
+    }
     return (
         <>
             <Row className='mt-5 d-flex justify-content-center'>
@@ -14,26 +18,26 @@ export const TimePickerComponent = (props) => {
                     <Container className='shadow p-0'>
                         <LocalizationProvider dateAdapter={AdapterDayjs}>
                             <DigitalClock
-                                minTime={dayjs(props.minTime)}
-                                maxTime={dayjs(props.maxTime)}
-                                timeStep={15}
+                                minTime={dayjs(minTime)}
+                                maxTime={dayjs(maxTime)}
+                                timeStep={30}
                                 skipDisabled
-                                value={props.value}
-                                defaultValue={props.value}
-                                onChange={(newValue) => props.setTime(newValue)}
+                                value={value}
+                                defaultValue={value}
+                                onChange={handleTime}
                             />
                         </LocalizationProvider>
                     </Container>
                 </Col>
             </Row>
             {
-                props.buttons &&
+                buttons &&
                 <Row className='mt-5 d-flex justify-content-center'>
                     <Col className='col-md-5 col-lg-3 col-sm-8 d-flex justify-content-around'>
-                        <Button variant="contained" color="success" onClick={props.handleBack}>
+                        <Button variant="contained" color="success" onClick={handleBack}>
                             back
                         </Button>
-                        <Button variant="contained" color="success" onClick={props.handleNext} className='ms-2'>
+                        <Button variant="contained" color="success" onClick={handleNext} className='ms-2'>
                             next
                         </Button>
                     </Col>

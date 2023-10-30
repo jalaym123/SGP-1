@@ -1,23 +1,22 @@
-import React, { useState, useEffect } from 'react'
-import { About } from './Components/Pages/About'
-import { NoPage } from './Components/Pages/NoPage'
-import { Home } from './Components/Pages/Home'
-import { Login } from './Components/Pages/Login'
-import { Routes, Route, useNavigate } from 'react-router-dom'
-import { NavBar } from './Components/Includes/NavBar'
+import dayjs from 'dayjs'
+import React, { useEffect, useState } from 'react'
+import { Container } from 'react-bootstrap'
+import { Route, Routes, useNavigate } from 'react-router-dom'
+import './App.css'
 import { Footer } from './Components/Includes/Footer'
-import { UserProfile } from './Components/Pages/UserProfile'
-import { Signup } from './Components/Pages/Signup'
-import { Reservation } from './Components/Pages/Reservation'
+import { NavBar } from './Components/Includes/NavBar'
+import { About } from './Components/Pages/About'
 import { AdvanceBooking } from './Components/Pages/Bookings/AdvanceBooking'
 import { LiveBooking } from './Components/Pages/Bookings/LiveBooking'
-import { Dashboard } from './Components/Pages/Dashboard'
-import { PaymentInfo } from './Components/Pages/PaymentInfo'
 import { Contact } from './Components/Pages/Contact'
-import dayjs from 'dayjs';
-import './App.css';
+import { Dashboard } from './Components/Pages/Dashboard'
+import { Home } from './Components/Pages/Home'
+import { Login } from './Components/Pages/Login'
+import { NoPage } from './Components/Pages/NoPage'
+import { Reservation } from './Components/Pages/Reservation'
+import { Signup } from './Components/Pages/Signup'
+import { UserProfile } from './Components/Pages/UserProfile'
 import restroApi from './api/restro'
-import { Container } from 'react-bootstrap'
 
 
 export const App = () => {
@@ -115,12 +114,6 @@ export const App = () => {
               Guests={guests}
               setGuests={setGuests}
               restroData={restroData}
-            />}
-          />
-          <Route path='/reservation/advancebooking/payment'
-            element={<PaymentInfo
-              restroData={restroData}
-
             />}
           />
           <Route path='/dashboard'

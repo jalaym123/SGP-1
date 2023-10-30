@@ -47,7 +47,7 @@ router.post("/success", async (req, res) => {
 
         // comaparing our digest with the actual signature
         if (digest !== razorpaySignature)
-            return res.json({ msg: "Transaction not legit!" });
+            return res.json({ msg: "Transaction not legit" });
             // return res.status(400).json({ msg: "Transaction not legit!" });
 
         // THE PAYMENT IS LEGIT & VERIFIED
